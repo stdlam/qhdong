@@ -10,7 +10,7 @@ public class Main {
 		
 		for(int i=1;i<=s;i++) {
 			temp[i-1]=0;
-			int t=0;
+			int t=0;//save value
 			for(int j=0;j<3;j++) {
 				int d=0;
 				int ret = 0;
@@ -21,18 +21,20 @@ public class Main {
 						break;
 					}
 					while(ret<i) {
-						ret = a[j]*d;
-						d++;
+						ret = a[j]*d+t;
+						if(ret<=i)
+							d++;
 					}
 					
 				}
 				if(ret==i) {
-					temp[i-1]+=d;
+					temp[i-1]+=d-1;
 					break;
 				}
 				if(ret>i) {
 					d--;
-					t=a[j]*d;
+					t+=a[j]*d;
+					temp[i-1]+=d;
 				}
 
 			}
